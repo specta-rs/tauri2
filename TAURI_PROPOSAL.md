@@ -69,7 +69,8 @@ Cargo's resolver seems to account for the `links` property in the `Cargo.toml` p
     echo "tauri = { version = \"=1.6.1\", optional = true }" >> Cargo.toml
     echo "tauri2 = { package = \"tauri\", version = \"=2.0.0-beta.13\", optional = true }" >> Cargo.toml
     cargo run # < We don't provide `--features` so neither are enabled.
-    ```
+  ```
+
 </details>
 
 ### Okay so have another crate?
@@ -123,6 +124,23 @@ As long as Specta maintains the following guarantees, Tauri will be able to main
  - `specta::functions::FunctionArg` exists, and must not change it's trait definition.
 
 All these are things I can guarantee.
+
+<details>
+  <summary>Sanity check using semver crate</summary>
+  
+  The following parses with the [`semver`](https://docs.rs/semver) crate which documents itself as using "Cargo’s flavor of Semantic Versioning".
+
+  ```rs
+use semver::{Version, VersionReq};
+
+fn main() {
+    let req = VersionReq::parse("^2.0.0-rc.8").unwrap();
+    assert!(req.matches(&Version::parse("2.0.0-rc.9").unwrap()));
+    assert!(req.matches(&Version::parse("2.0.0").unwrap()));
+    assert!(req.matches(&Version::parse("2.1.0").unwrap()));
+}
+  ```
+</details>
 
 ## Alternatives
 
