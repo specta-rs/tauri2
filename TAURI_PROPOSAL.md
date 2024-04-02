@@ -21,17 +21,9 @@ Then you use the [`tauri_specta::collect_commands`](https://docs.rs/tauri-specta
 
 The macro's all work exactly the same as the Tauri equivalents but if your still unsure checkout [this example app](https://github.com/oscartbeaumont/tauri-specta/tree/main/examples/app).
 
-## Why not `tauri-bingen`?
-
-[tauri-bindgen](https://github.com/tauri-apps/tauri-bindgen) is a really cool crate for doing a similar thing.
-
-However it takes the schema first approach, as opposed to Tauri Specta's code-first approach.
-
-Tauri bindgen uses `.wit` files as the source of truth for the types in Rust and Typescript, as opposed to your Rust code. I think both approaches have their place in different sources of Tauri applications.
-
 ## Why not a `tauri` feature on Specta?
 
-Up until the [`2.0.0-rc.9` release of Specta](https://github.com/oscartbeaumont/specta/releases/tag/v2.0.0-rc.9) (release earlier today) we supported Tauri however this isn't going to be possible after Specta v2 moves to a stable release.
+Up until the [`2.0.0-rc.9` release of Specta](https://github.com/oscartbeaumont/specta/releases/tag/v2.0.0-rc.9) (release earlier today) we supported Tauri, however, this isn't going to be possible after Specta v2 moves to a stable release.
 
 ### You major, we major
 
