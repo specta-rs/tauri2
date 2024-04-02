@@ -1,6 +1,8 @@
 # Tauri 2
 
-This repository contains adapters for using specta-rs projects with [Tauri](https://tauri.app) v2.
+This repository contains adapters and documentation around using specta-rs projects ([rspc](http://github.com/oscartbeaumont/rspc), [specta](https://github.com/oscartbeaumont/specta) & [tauri-specta](https://github.com/oscartbeaumont/tauri-specta)) with [Tauri](https://tauri.app) v2.
+
+As Tauri v2 isn't stable yet and the webkit issues documented below these adapters aren't in the mainline repositories.
 
 ## Support Matrix
 
