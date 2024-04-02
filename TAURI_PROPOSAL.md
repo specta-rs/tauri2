@@ -27,7 +27,7 @@ The macro's all work exactly the same as the Tauri equivalents but if your still
 
 However it takes the schema first approach, as opposed to Tauri Specta's code-first approach.
 
-Tauri bindgen uses `.wit` files as the source of truth for the types in Rust and, as opposed to your Rust code. Both approaches have their place but I personally prefer the easy of use of not needing to maintain `.wit` files.
+Tauri bindgen uses `.wit` files as the source of truth for the types in Rust and Typescript, as opposed to your Rust code. I think both approaches have their place in different sources of Tauri applications.
 
 ## Why not a `tauri` feature on Specta?
 
