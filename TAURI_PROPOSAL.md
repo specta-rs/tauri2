@@ -19,7 +19,7 @@ fn my_command() {}
 
 Then you use the [`tauri_specta::collect_commands`](https://docs.rs/tauri-specta/2.0.0-rc.4/tauri_specta/macro.collect_commands.html) to collect the types and Tauri commands and attach them to the Tauri builder.
 
-The macro's all work exactly the same as the Tauri equivalents.
+The macro's all work exactly the same as the Tauri equivalents but if your still unsure checkout [this example app](https://github.com/oscartbeaumont/tauri-specta/tree/main/examples/app).
 
 ## Why not `tauri-bingen`?
 
