@@ -2,7 +2,7 @@
 
 I am writing this proposal to ask if we can introduce a `specta` feature to the `tauri` crate.
 
-This feature will contain an implementation of [specta::functions::FunctionArg](https://docs.rs/specta/2.0.0-rc.8/specta/functions/trait.FunctionArg.html) for [`tauri::State`](https://docs.rs/tauri/latest/tauri/struct.State.html), [`tauri::window::Window`](https://docs.rs/tauri/latest/tauri/window/struct.Window.html) and [`tauri::AppHandle`](https://docs.rs/tauri/latest/tauri/struct.AppHandle.html).
+This feature will contain an implementation of [specta::function::FunctionArg](https://docs.rs/specta/2.0.0-rc.9/specta/function/trait.FunctionArg.html) for [`tauri::State`](https://docs.rs/tauri/latest/tauri/struct.State.html), [`tauri::window::Window`](https://docs.rs/tauri/latest/tauri/window/struct.Window.html) and [`tauri::AppHandle`](https://docs.rs/tauri/latest/tauri/struct.AppHandle.html).
 
 This feature would significantly help with supporting [Tauri Specta](https://github.com/oscartbeaumont/tauri-specta).
 
@@ -10,7 +10,7 @@ This feature would significantly help with supporting [Tauri Specta](https://git
 
 Tauri Specta is a crate which combines [Specta](https://docs.rs/specta/latest/specta/)'s Typescript, Javascript and JSDoc exporters with your Tauri commands for end-to-end type safety.
 
-To use it you add the [`specta::specta`](https://docs.rs/specta/2.0.0-rc.8/specta/attr.specta.html) macro to your commands like the following:
+To use it you add the [`specta::specta`](https://docs.rs/specta/2.0.0-rc.9/specta/attr.specta.html) macro to your commands like the following:
 ```rs
 #[tauri::command]
 #[specta::specta] // < dis bit
@@ -31,7 +31,7 @@ Tauri bindgen uses `.wit` files as the source of truth for the types in Rust and
 
 ## Why not a `tauri` feature on Specta?
 
-Up until the [`2.0.0-rc.8` release of Specta](https://github.com/oscartbeaumont/specta/releases/tag/v2.0.0-rc.8) (release earlier today) we supported Tauri however this isn't going to be possible after Specta v2 moves to a stable release.
+Up until the [`2.0.0-rc.9` release of Specta](https://github.com/oscartbeaumont/specta/releases/tag/v2.0.0-rc.9) (release earlier today) we supported Tauri however this isn't going to be possible after Specta v2 moves to a stable release.
 
 ### You major, we major
 
@@ -96,7 +96,7 @@ This however won't work for Specta as we will run into Rust's [Orphan Rule](http
 ## What would the implementations look like?
 
 ```rs
-use specta::{TypeMap, DataType, functions::FunctionArg};
+use specta::{TypeMap, DataType, function::FunctionArg};
 
 impl<'r, T: Send + Sync + 'static> FunctionArg for tauri::State {
     fn to_datatype(type_map: &mut TypeMap) -> Option<DataType> {
@@ -125,13 +125,14 @@ However, even though this is the case I think it's safe for Tauri to implement a
 
 ## Semver and caret
 
-If Tauri were to depend on Specta version `^2.0.0-rc.8` it will match all future release candidates and the final release.
+If Tauri were to depend on Specta version `^2.0.0-rc.9` it will match all future release candidates and the final release.
 
 As long as Specta maintains the following guarantees, Tauri will be able to maintain semver:
 
  - `specta::TypeMap` exists, no restrictions on it's API surface.
  - `specta::DataType` exists, no restrictions on it's API surface.
- - `specta::functions::FunctionArg` exists, and must not change it's trait definition.
+ - `specta::function::FunctionArg` exists, and must not change it's trait definition.
+ - The `function` feature on the `specta` crate must exist.
 
 All these are things I can guarantee.
 
@@ -144,8 +145,8 @@ All these are things I can guarantee.
 use semver::{Version, VersionReq};
 
 fn main() {
-    let req = VersionReq::parse("^2.0.0-rc.8").unwrap();
-    assert!(req.matches(&Version::parse("2.0.0-rc.9").unwrap()));
+    let req = VersionReq::parse("^2.0.0-rc.9").unwrap();
+    assert!(req.matches(&Version::parse("2.0.0-rc.10").unwrap()));
     assert!(req.matches(&Version::parse("2.0.0").unwrap()));
     assert!(req.matches(&Version::parse("2.1.0").unwrap()));
 }
