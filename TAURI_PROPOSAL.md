@@ -149,9 +149,35 @@ fn main() {
   ```
 </details>
 
+## Precedence
+
+The Tauri crate currently has features for integrating with the external crates [`tracing`](https://docs.rs/tracing) and [`tray-icon`](https://docs.rs/tray-icon).
+
+Some notes about them:
+ - `tray-icon` is owned by Tauri
+ - `tracing` is a *massive*ly used crate (2650 times as many installs as Specta, 🥹)
+
+It is probably fair to say Specta doesn't exactly follow this precedence, however, the technical implementation of something to work with another crate is nothing new to Tauri.
+
+## Who will maintain it?
+
+I am happy to pledge my time to maintaining this integration. It's also very little code so I don't foresee a maintenance burden due to it and it's within my best interests to maintain it for Tauri Specta to keep working.
+
 ## Follow up
 
 I would be happy to open a PR but I wanted to bring this up for discussion first.
+
+## Does Tauri Specta need to exist?
+
+Even if we add the `specta` feature to Tauri we will still need Tauri Specta to exist.
+
+Tauri Specta takes care of the boilerplate of using Specta functions and also goes further into Tauri events and more.
+
+The functionality of Tauri Specta heavily depends on a specific Tauri version by design, which we can't do in the main `specta` crate due to the semver issues it creates which the proposal aims to avoid.
+
+The Tauri crate must maintain a feature for `specta` as opposed to a `tauri_specta` feature as Specta is what takes care of the heavy lifting for the type exporting that Tauri Specta uses.
+
+I have also discussed with Denjell the possibility of donating Tauri Specta to the Tauri organisation, however, that is something for another time.
 
 ## Alternatives
 
