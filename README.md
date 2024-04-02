@@ -10,7 +10,7 @@ This is primarily targetted at early adopters.
 
 |            | Tauri v1                          | Tauri v2              |
 |------------|-----------------------------------|-----------------------|
-| rspc 0.1.x | Use the 'tauri' feature on `rspc` | [Upgrade to rspc 0.2.x](https://github.com/oscartbeaumont/rspc/releases/tag/v0.2.0) |
+| rspc 0.1.x | Use the 'tauri' feature on `rspc` | Unsupported. [Upgrade to rspc 0.2.x](https://github.com/oscartbeaumont/rspc/releases/tag/v0.2.0) |
 | rspc 0.2.x | [Use `rspc_tauri` crate](https://www.rspc.dev/integrations/tauri)            | Use `rspc_tauri2`     |
 
 ### Using `rspc_tauri2`
@@ -24,24 +24,30 @@ Then [follow the rspc docs](https://www.rspc.dev/integrations/tauri) but replace
 
 ## Specta
 
+> [!WARNING]  
+> This support matrix is not correct. Tauri v2 is yet supported by Specta 2 but we are working on it.
+
+|         | tauri1                          | tauri2                           |
+|---------|---------------------------------|----------------------------------|
+| specta1 | Via 'tauri' feature on `specta` | Unsupported. Upgrade to specta2  |
+| specta2 | Unsupported. Upgrade to Tauri2  | Via 'specta' feature on  `tauri` |
+
+Previously Specta had a `tauri` feature on `specta` for functions support. This function support is what powers Tauri Specta.
+
 Coming soon...
 
 ## Tauri Specta
 
+> [!WARNING]  
+> We are waiting on Tauri v2 + Specta v2 support to be resolved before we can support this.
+
 Coming soon...
-
-## Support Matrix
-
-|        | specta1                         | specta2                          | rspc1                         | rspc2                                                             | tauri-specta1 | tauri-specta2 |
-|--------|---------------------------------|----------------------------------|-------------------------------|-------------------------------------------------------------------|---------------|---------------|
-| tauri1 | via 'tauri' feature on `specta` | Not supported                    | Via 'tauri' feature on `rspc` | Via  `rspc_tauri`  crate                                          | Supported     | tbd           |
-| tauri2 | Not supported                   | via 'specta' feature on  `tauri` | Not supported                 | Via  `rspc_tauri2`  crate (until it's released) then `rspc_tauri` | Not supported | Supported     |
 
 ## FAQ?
 
 ### Why a whole repository for this?
 
-You can't actively have Tauri and Tauri v2 in the same Cargo workspace.
+You can't actually have Tauri and Tauri v2 in the same Cargo workspace.
 
 This is due to Tauri depending on C/C++ libraries such as Webkit which link against shared libraries. Cargo flags the potential for the same shared library to be linked twice and bails out.
 
