@@ -29,9 +29,9 @@ Up until the [`2.0.0-rc.9` release of Specta](https://github.com/oscartbeaumont/
 
 If we depend on Tauri every time Tauri releases a major version so would Specta.
 
-This is a big problem when I would like Specta v2 to the final version.
+This is a big problem when I would like Specta v2 to be the final version.
 
-Similar to Serde, I want Specta to be able to develop an ecosystem of crates than implement it's trait and for this to happen Specta's API surface needs to be locked because us releasing a major is a big deal.
+Similar to Serde, I want Specta to be able to develop an ecosystem of crates that implement its trait and this is only going to be possible if Specta has a semver stable API.
 
 ### Just use features?
 
@@ -60,7 +60,7 @@ Only one package in the dependency graph may specify the same links value. This 
 failed to select a version for `webkit2gtk-sys` which could resolve this conflict
 ```
 
-Cargo's resolver seems to account for the `links` property in the `Cargo.toml` prior without taking into account the enabled features.
+Cargo's resolver seems to account for the `links` property in the `Cargo.toml` without taking into account the enabled features.
 
 <details>
   <summary>Reproduce this issue yourself in 5 easy commands</summary>
@@ -70,7 +70,7 @@ Cargo's resolver seems to account for the `links` property in the `Cargo.toml` p
     cd testing/
     echo "tauri = { version = \"=1.6.1\", optional = true }" >> Cargo.toml
     echo "tauri2 = { package = \"tauri\", version = \"=2.0.0-beta.13\", optional = true }" >> Cargo.toml
-    cargo run # < We don't provide `--features` so neither are enabled.
+    cargo run # < We don't provide `--features` so neither is enabled.
   ```
 
 </details>
@@ -81,11 +81,15 @@ Another common approach in the ecosystem is to use crates for integrations.
 
 For example [`rspc`](https://github.com/oscartbeaumont/rspc) another project of mine is doing exactly this. We have the core [`rspc`](https://docs.rs/tauri) crate and an [`rspc_tauri`](https://docs.rs/rspc-tauri) crate.
 
-Now this runs into the same issues where multiple Tauri version cant exist in the same Cargo workspace but that can be worked around by having a second GitHub repository as rspc has done for [`rspc_tauri2`](https://github.com/specta-rs/tauri2/tree/main/rspc_tauri2).
+Now this runs into the same issues where multiple Tauri versions can't exist in the same Cargo workspace but that can be worked around by having a second GitHub repository as rspc has done for [`rspc_tauri2`](https://github.com/specta-rs/tauri2/tree/main/rspc_tauri2) by putting it's adapter in `specta-rs/tauri2` instead of `oscartbeaumont/rspc`.
 
-This however won't work for Specta as we will run into Rust's [Orphan Rule](https://doc.rust-lang.org/reference/items/implementations.html#orphan-rules). With the Orphan rule the implementation can with the `specta` trait or the `tauri` trait and we have discussed above why Specta is not viable.
+Even if we were to break it into another repository this won't work in this specific scenario due to Rust's [Orphan Rule](https://doc.rust-lang.org/reference/items/implementations.html#orphan-rules).
+
+With the orphan rule an implementation for a trait must belong where the trait or the type it's being implemented for is defined which in this case is either  `specta` or `tauri`  and we have discussed above why Specta is not viable.
 
 ## What would the implementations look like?
+
+It would be the following code feature gated behind the `specta` feature:
 
 ```rs
 use specta::{TypeMap, DataType, function::FunctionArg};
@@ -111,13 +115,13 @@ impl<R: tauri::Runtime> FunctionArg for tauri::Window {
 
 ## Specta v2 is in beta
 
-Right now Specta v2 is being released under `2.0.0-rc.x` releases. I am not 100% sure that the current API surface will not need breaking changes and i'm not going to be doing the full release until i'm dead sure this can be the last major Specta release.
+Right now Specta v2 is being released under `2.0.0-rc.x` releases. I am not 100% sure that the current API surface will not need breaking changes and as such i'm not going to be doing a full release until i'm dead sure this can be the last major Specta release.
 
-However, even though this is the case I think it's safe for Tauri to implement a Specta feature right now.
+Even though this is the case I think it's still safe for Tauri to implement a Specta feature right now.
 
 ## Semver and caret
 
-If Tauri were to depend on Specta version `^2.0.0-rc.9` it will match all future release candidates and the final release.
+If Tauri were to depend on Specta version `^2.0.0-rc.9` it will match all future release candidates *and* the final release.
 
 As long as Specta maintains the following guarantees, Tauri will be able to maintain semver:
 
@@ -151,8 +155,14 @@ I would be happy to open a PR but I wanted to bring this up for discussion first
 
 ## Alternatives
 
-### Move Specta function related code into Tauri Specta
+### Figuring out a way to have multiple Tauri versions in one project
 
-We could copy all of the macro and traits related to functions from Specta to within Tauri Specta. This would make the Tauri Specta significantly harder to maintain.
+If someone could figure out a Cargo hack for this we could potentially use it.
+
+Although even if this was possible i'm not sure it would be great in terms of UX of having `{crate_name}`, `{crate_name}2`, etc for every major version and it would be maintainability nightmare due to having to keep up to date all versions (and then what do we do for beta releases where each release could have major breaking changes).
+
+### Move Specta function-related code into Tauri Specta
+
+We could copy all of the macro and traits related to functions from Specta to within Tauri Specta. This would make the Tauri Specta significantly harder to maintain and would require us maintaining two versions of the same code, or not proving it as an API for other frameworks.
 
 Right now Tauri Specta leaves all the heavy lifting to Specta and just exists to remove the boilerplate.
