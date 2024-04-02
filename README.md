@@ -1,8 +1,34 @@
 # Tauri 2
 
-This repository contains adapters and documentation around using specta-rs projects ([rspc](http://github.com/oscartbeaumont/rspc), [specta](https://github.com/oscartbeaumont/specta) & [tauri-specta](https://github.com/oscartbeaumont/tauri-specta)) with [Tauri](https://tauri.app) v2.
+This repository contains adapters and documentation around using [Tauri](https://tauri.app) v2 with specta-rs projects ([rspc](http://github.com/oscartbeaumont/rspc), [specta](https://github.com/oscartbeaumont/specta) & [tauri-specta](https://github.com/oscartbeaumont/tauri-specta)).
 
-As Tauri v2 isn't stable yet and the webkit issues documented below these adapters aren't in the mainline repositories.
+This repository will be archived and it's changes upstreamed once Tauri v2 is released as stable in the coming months.
+
+This is primarily targetted at early adopters.
+
+## rspc
+
+|            | Tauri v1                          | Tauri v2              |
+|------------|-----------------------------------|-----------------------|
+| rspc 0.1.x | Use the 'tauri' feature on `rspc` | [Upgrade to rspc 0.2.x](https://github.com/oscartbeaumont/rspc/releases/tag/v0.2.0) |
+| rspc 0.2.x | [Use `rspc_tauri` crate](https://www.rspc.dev/integrations/tauri)            | Use `rspc_tauri2`     |
+
+### Using `rspc_tauri2`
+
+To import it add the following to your `Cargo.toml`:
+```toml
+rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "501572c10bd5db001bd091990ac52c1fdbb14a5a" }
+```
+
+Then [follow the rspc docs](https://www.rspc.dev/integrations/tauri) but replace `rspc_tauri` with `rspc_tauri2`.
+
+## Specta
+
+Coming soon...
+
+## Tauri Specta
+
+Coming soon...
 
 ## Support Matrix
 
