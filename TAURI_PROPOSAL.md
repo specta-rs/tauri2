@@ -1,6 +1,8 @@
-## Tauri proposal
+# Tauri proposal
 
-I am writing this proposal to ask if we can introduce a `specta` feature to the `tauri` crate. This feature will contain an implementation of [specta::functions::FunctionArg](https://docs.rs/specta/2.0.0-rc.8/specta/functions/trait.FunctionArg.html) for [`tauri::State`](https://docs.rs/tauri/latest/tauri/struct.State.html), [`tauri::window::Window`](https://docs.rs/tauri/latest/tauri/window/struct.Window.html) and [`tauri::AppHandle`](https://docs.rs/tauri/latest/tauri/struct.AppHandle.html).
+I am writing this proposal to ask if we can introduce a `specta` feature to the `tauri` crate.
+
+This feature will contain an implementation of [specta::functions::FunctionArg](https://docs.rs/specta/2.0.0-rc.8/specta/functions/trait.FunctionArg.html) for [`tauri::State`](https://docs.rs/tauri/latest/tauri/struct.State.html), [`tauri::window::Window`](https://docs.rs/tauri/latest/tauri/window/struct.Window.html) and [`tauri::AppHandle`](https://docs.rs/tauri/latest/tauri/struct.AppHandle.html).
 
 This feature would significantly help with supporting [Tauri Specta](https://github.com/oscartbeaumont/tauri-specta).
 
@@ -18,6 +20,14 @@ fn my_command() {}
 Then you use the [`tauri_specta::collect_commands`](https://docs.rs/tauri-specta/2.0.0-rc.4/tauri_specta/macro.collect_commands.html) to collect the types and Tauri commands and attach them to the Tauri builder.
 
 The macro's all work exactly the same as the Tauri equivalents.
+
+## Why not `tauri-bingen`?
+
+[tauri-bindgen](https://github.com/tauri-apps/tauri-bindgen) is a really cool crate for doing a similar thing.
+
+However it takes the schema first approach, as opposed to Tauri Specta's code-first approach.
+
+Tauri bindgen uses `.wit` files as the source of truth for the types in Rust and, as opposed to your Rust code. Both approaches have their place but I personally prefer the easy of use of not needing to maintain `.wit` files.
 
 ## Why not a `tauri` feature on Specta?
 
@@ -115,7 +125,7 @@ However, even though this is the case I think it's safe for Tauri to implement a
 
 ## Semver and caret
 
-If Tauri were to depend on Specta version `^2.0.0-rc.8` it will match all preceding release candidates and the final release.
+If Tauri were to depend on Specta version `^2.0.0-rc.8` it will match all future release candidates and the final release.
 
 As long as Specta maintains the following guarantees, Tauri will be able to maintain semver:
 
@@ -146,6 +156,6 @@ fn main() {
 
 ### Move Specta function related code into Tauri Specta
 
-We could move the macro and traits related to functions from Specta to within Tauri Specta. This would make the Tauri Specta significantly harder to maintain.
+We could copy all of the macro and traits related to functions from Specta to within Tauri Specta. This would make the Tauri Specta significantly harder to maintain.
 
-Right now it's basically just a wrapper for integrating Specta into Tauri with less boilerplate.
+Right now Tauri Specta leaves all the heavy lifting to Specta and just exists to remove the boilerplate.
