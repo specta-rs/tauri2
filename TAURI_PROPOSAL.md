@@ -153,6 +153,10 @@ fn main() {
   ```
 </details>
 
+## Follow up
+
+I would be happy to open a PR but I wanted to bring this up for discussion first.
+
 ## Alternatives
 
 ### Move Specta function related code into Tauri Specta
