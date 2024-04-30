@@ -11,7 +11,7 @@ This is primarily targetted at early adopters.
 |            | Tauri v1                          | Tauri v2              |
 |------------|-----------------------------------|-----------------------|
 | rspc 0.1.x | Use the 'tauri' feature on `rspc` | Unsupported. [Upgrade to rspc 0.2.x](https://github.com/oscartbeaumont/rspc/releases/tag/v0.2.0) |
-| rspc 0.2.x | [Use `rspc_tauri` crate](https://www.rspc.dev/integrations/tauri)            | Use `rspc_tauri2`     |
+| rspc 0.2.x | [Use `rspc_tauri` crate](https://www.rspc.dev/integrations/tauri)            | Use [`rspc_tauri2`](./rspc_tauri2)     |
 
 ### Using `rspc_tauri2`
 
@@ -22,10 +22,15 @@ rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "501572c10bd5
 
 Then [follow the rspc docs](https://www.rspc.dev/integrations/tauri) but replace `rspc_tauri` with `rspc_tauri2`.
 
-## Specta
+You will also need to use [`@rspc/tauri`](https://github.com/oscartbeaumont/tauri-specta/blob/main/docs/v2.md) import from [here](https://github.com/oscartbeaumont/rspc/tree/v0.x/packages/tauri2) which is not published to npm.
 
-> [!WARNING]  
-> This support matrix is not correct. Tauri v2 is yet supported by Specta 2 but we are working on it.
+I would highly recommend using [pnpm](https://pnpm.io) and copying the patch from [rspc_example/patches/@rspc__tauri@0.2.0.patch](https://github.com/specta-rs/tauri2/blob/main/rspc_example/patches/%40rspc__tauri%400.2.0.patch) and then copying the `patches` section from the [package.json](https://github.com/specta-rs/tauri2/blob/0db5c136c68ca4ae13734a43c1980ca9cd81ab11/rspc_example/package.json#L23).
+
+## Tauri Specta
+
+You can follow the documentation [here](https://github.com/oscartbeaumont/tauri-specta/blob/main/docs/v2.md) for Tauri v2 support.
+
+## Specta
 
 |         | tauri1                          | tauri2                           |
 |---------|---------------------------------|----------------------------------|
@@ -33,15 +38,6 @@ Then [follow the rspc docs](https://www.rspc.dev/integrations/tauri) but replace
 | specta2 | Unsupported. Upgrade to Tauri2  | Via 'specta' feature on  `tauri` |
 
 Previously Specta had a `tauri` feature on `specta` for functions support. This function support is what powers Tauri Specta.
-
-Coming soon...
-
-## Tauri Specta
-
-> [!WARNING]  
-> We are waiting on Tauri v2 + Specta v2 support to be resolved before we can support this.
-
-Coming soon...
 
 ## FAQ?
 
