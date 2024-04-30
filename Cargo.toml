@@ -1,3 +1,3 @@
 [workspace]
 resolver = "2"
-members = ["./rspc_tauri2"]
+members = ["./rspc_tauri2", "./rspc_example/src-tauri"]

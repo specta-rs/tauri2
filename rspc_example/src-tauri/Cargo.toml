@@ -1,0 +1,18 @@
+[package]
+name = "rspc_example"
+version = "0.0.0"
+description = "A Tauri App"
+authors = ["you"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2.0.0-beta", features = [] }
+
+[dependencies]
+tauri = { version = "2.0.0-beta", features = [] }
+tauri-plugin-shell = "2.0.0-beta"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rspc = "0.2.0"
+rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "501572c10bd5db001bd091990ac52c1fdbb14a5a" }
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
