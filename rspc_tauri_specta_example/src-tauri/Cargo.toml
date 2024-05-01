@@ -23,3 +23,9 @@ tauri-specta = { version = "=2.0.0-rc.5", features = [
     "javascript",
     "typescript",
 ] }
+
+# I know these do nothing in a Cargo workspace but this should help if people copy this example.
+[patch.crates-io]
+# Interop support
+specta = { git = "https://github.com/oscartbeaumont/specta", rev = "d32f7189246e821f1152c0b78d43fcc3eebfd8fd" }
+rspc = { git = "https://github.com/oscartbeaumont/rspc", rev = "c57fa59a4369a4e64a5322dd7eb0cf3992b57ab1" }
