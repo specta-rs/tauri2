@@ -8,16 +8,16 @@ This is primarily targetted at early adopters.
 
 ## rspc
 
-|            | Tauri v1                          | Tauri v2              |
-|------------|-----------------------------------|-----------------------|
-| rspc 0.1.x | Use the 'tauri' feature on `rspc` | Unsupported. [Upgrade to rspc 0.2.x](https://github.com/oscartbeaumont/rspc/releases/tag/v0.2.0) |
-| rspc 0.2.x | [Use `rspc_tauri` crate](https://www.rspc.dev/integrations/tauri)            | Use [`rspc_tauri2`](./rspc_tauri2)     |
+|            | Tauri v1                                                          | Tauri v2                                                                                         |
+| ---------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| rspc 0.1.x | Use the 'tauri' feature on `rspc`                                 | Unsupported. [Upgrade to rspc 0.2.x](https://github.com/oscartbeaumont/rspc/releases/tag/v0.2.0) |
+| rspc 0.2.x | [Use `rspc_tauri` crate](https://www.rspc.dev/integrations/tauri) | Use [`rspc_tauri2`](./rspc_tauri2)                                                               |
 
 ### Using `rspc_tauri2`
 
 To import it add the following to your `Cargo.toml`:
 ```toml
-rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "501572c10bd5db001bd091990ac52c1fdbb14a5a" }
+rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "a605fbb7b77ba55ca310c20e2475fddb05fbc969" }
 ```
 
 Then [follow the rspc docs](https://www.rspc.dev/integrations/tauri) but replace `rspc_tauri` with `rspc_tauri2`.
@@ -33,7 +33,7 @@ You can follow the documentation [here](https://github.com/oscartbeaumont/tauri-
 ## Specta
 
 |         | tauri1                          | tauri2                           |
-|---------|---------------------------------|----------------------------------|
+| ------- | ------------------------------- | -------------------------------- |
 | specta1 | Via 'tauri' feature on `specta` | Unsupported. Upgrade to specta2  |
 | specta2 | Unsupported. Upgrade to Tauri2  | Via 'specta' feature on  `tauri` |
 

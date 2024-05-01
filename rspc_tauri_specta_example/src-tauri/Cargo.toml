@@ -1,5 +1,5 @@
 [package]
-name = "rspc_example"
+name = "rspc_tauri_specta_example"
 version = "0.0.0"
 description = "A Tauri App"
 authors = ["you"]
@@ -13,6 +13,13 @@ tauri = { version = "2.0.0-beta", features = [] }
 tauri-plugin-shell = "2.0.0-beta"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-rspc = "0.2.0"
+rspc = { version = "0.2.0", features = [
+    "specta2",
+] } # <- The specta2 feature is what makes this all work
+specta = "=2.0.0-rc.11"
 rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "a605fbb7b77ba55ca310c20e2475fddb05fbc969" }
 tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
+tauri-specta = { version = "=2.0.0-rc.5", features = [
+    "javascript",
+    "typescript",
+] }

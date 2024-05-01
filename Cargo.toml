@@ -1,3 +1,12 @@
 [workspace]
 resolver = "2"
-members = ["./rspc_tauri2", "./rspc_example/src-tauri"]
+members = [
+    "./rspc_tauri2",
+    "./rspc_example/src-tauri",
+    "./rspc_tauri_specta_example/src-tauri",
+]
+
+[patch.crates-io]
+# Interop support
+specta = { git = "https://github.com/oscartbeaumont/specta", rev = "d32f7189246e821f1152c0b78d43fcc3eebfd8fd" }
+rspc = { git = "https://github.com/oscartbeaumont/rspc", rev = "c57fa59a4369a4e64a5322dd7eb0cf3992b57ab1" }
