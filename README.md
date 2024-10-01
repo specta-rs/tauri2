@@ -17,7 +17,7 @@ This is primarily targetted at early adopters.
 
 To import it add the following to your `Cargo.toml`:
 ```toml
-rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "a605fbb7b77ba55ca310c20e2475fddb05fbc969" }
+rspc-tauri2 = { git = "https://github.com/specta-rs/tauri2", rev = "5aa94a50b79ab9f1449982b18bee0dc22fe7f7d2" }
 ```
 
 Then [follow the rspc docs](https://www.rspc.dev/integrations/tauri) but replace `rspc_tauri` with `rspc_tauri2`.
