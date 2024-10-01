@@ -8,8 +8,7 @@
 use std::{borrow::Borrow, collections::HashMap, sync::Arc};
 
 use tauri::{
-    plugin::{Builder, TauriPlugin},
-    AppHandle, Manager, Runtime,
+    plugin::{Builder, TauriPlugin}, AppHandle, Emitter, Listener, Runtime
 };
 use tokio::sync::{mpsc, Mutex};
 
@@ -64,6 +63,9 @@ where
                             .map_err(|err| {
                                 #[cfg(feature = "tracing")]
                                 tracing::error!("failed to emit JSON-RPC response: {}", err);
+
+                                #[cfg(not(feature = "tracing"))]
+                                let _ = err; // Suppress unused variable warning
                             });
                     }
                 });
@@ -76,12 +78,18 @@ where
                         Err(err) => {
                             #[cfg(feature = "tracing")]
                             tracing::error!("failed to parse JSON-RPC request: {}", err);
+
+                            #[cfg(not(feature = "tracing"))]
+                            let _ = err; // Suppress unused variable warning
                             return;
                         }
                     })
                     .map_err(|err| {
                         #[cfg(feature = "tracing")]
                         tracing::error!("failed to send JSON-RPC request: {}", err);
+
+                        #[cfg(not(feature = "tracing"))]
+                        let _ = err; // Suppress unused variable warning
                     });
             });
 

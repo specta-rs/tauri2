@@ -1,5 +1,6 @@
 {
-  "productName": "rspc_example",
+  "$schema": "https://schema.tauri.app/config/2.0.0-rc",
+  "productName": "rspc_tauri_specta_example",
   "version": "0.0.0",
   "identifier": "com.tauri.dev",
   "build": {
@@ -12,7 +13,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "rspc_example",
+        "title": "rspc_tauri_specta_example",
         "width": 800,
         "height": 600
       }
