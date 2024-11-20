@@ -1,5 +1,8 @@
 # Tauri 2
 
+> [!WARNING]  
+> As Tauri v2 is now stable, all upstream projects have upgraded and this repository is no longer revelant.
+
 This repository contains adapters and documentation around using [Tauri](https://tauri.app) v2 with specta-rs projects ([rspc](http://github.com/oscartbeaumont/rspc), [specta](https://github.com/oscartbeaumont/specta) & [tauri-specta](https://github.com/oscartbeaumont/tauri-specta)).
 
 This repository will be archived and it's changes upstreamed once Tauri v2 is released as stable in the coming months.
